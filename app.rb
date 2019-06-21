@@ -5,7 +5,7 @@ require 'sinatra/reloader'
 require 'sqlite3'
 
 configure do
-	db = SQLite3::Databbase.new 'barbershop.db'
+	db = get_db
 	db.execute 'CREATE TABLE IF NOT EXISTS "users" 
 	(
 	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -47,7 +47,7 @@ hh = {
 			@error hh.select {|key,_ params[key] == }.values.join(",")
 
 		if @error != ''
-					return erb  :visit
+					return erb :visit
 		end
 db = get_db
 			db.execute 'insert into Users (
