@@ -4,8 +4,14 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
+def get_db
+		db = SQLite3::Databbase.new 'barbershop.db'
+		db.results_as_hash = true
+		return db
+	end
+
 configure do
-	db = get_db
+	@db = SQLite3::Databbase.new 'barbershop.db'
 	db.execute 'CREATE TABLE IF NOT EXISTS "users" 
 	(
 	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -66,8 +72,4 @@ db = get_db
 	get '/showusers' do 
 		erb "Hello world"
 	end
-	def get_db
-		db = SQLite3::Databbase.new 'barbershop.db'
-		db.results_as_hash = true
-		return db
-	end
+	
