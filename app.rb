@@ -11,7 +11,8 @@ def get_db
 	end
 
 configure do
-	@db = SQLite3::Databbase.new 'barbershop.db'
+	db = get get_db
+	
 	db.execute 'CREATE TABLE IF NOT EXISTS "users" 
 	(
 	"id" INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -44,9 +45,9 @@ get '/about' do
 
 hh = {
 
-		:username => 'Enter name'
-		:phone => 'Enter phone'
-		:datetime => 'Enter date and time'
+		:username => "Enter name"
+		:phone => "Enter phone"
+		:datetime => "Enter date and time"
 
 }
 		
@@ -56,7 +57,7 @@ hh = {
 					 erb visit
 		end
 db = get_db
-			db.execute 'insert into Users (
+			db.execute 'insert into users (
 			username, 
 			phone, 
 			datestamp, 
@@ -70,6 +71,6 @@ db = get_db
 
 	end
 	get '/showusers' do 
-		erb "Hello world"
-	end
+		erb :showusers 
+			end
 	
