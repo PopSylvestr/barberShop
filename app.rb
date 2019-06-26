@@ -45,16 +45,16 @@ get '/about' do
 
 hh = {
 
-		:username => "Enter name"
-		:phone => "Enter phone"
-		:datetime => "Enter date and time"
+		:username => 'Enter name'
+		:phone => 'Enter phone'
+		:datetime => 'Enter date and time'
 
 }
 		
-			@error hh.select {|key,_ params[key] == }.values.join(",")
+			@error hh.select {|key,_| params[key] == ""}.values.join(",")
 
 		if @error != ''
-					 erb visit
+					 erb :visit
 		end
 db = get_db
 			db.execute 'insert into users (
@@ -70,7 +70,9 @@ db = get_db
 		erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@barber}, #{@color}"
 
 	end
-	get '/showusers' do 
+	get '/showusers' do
+	db = get_db
+	@results = db.execute 'select * from users order by id desc' 
 		erb :showusers 
 			end
 	
