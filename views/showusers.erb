@@ -1,7 +1,19 @@
 
-<%= @results %>
-<table class="table">
 
+<table class="table table-striped">
+	
+<thead>
+	<tr>
+
+<th>name</th>
+<th>phone></th>
+<th>datestamp></th>
+<th>barber</th>
+<th>color</th>
+</tr>
+</thead>
+
+<body>
  <% @results.each do |row| %>
 <tr>
 
@@ -14,6 +26,6 @@
 
 
  <% end %>
- 	
+ </body>	
  </table>
 
