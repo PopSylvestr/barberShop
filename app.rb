@@ -23,6 +23,11 @@ def get_db
 		return db
 	end
 
+	before do
+		db = get_db
+		@barbers = db.execute 'selec * from Barbers'
+		end
+
 configure do
 	db = get get_db
 	
@@ -87,6 +92,8 @@ db = get_db
 		
 	
 		erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@barber}, #{@color}"
+
+		erb "<h2>Thanks, you are regustrated</h2>"
 
 	end
 	get '/showusers' do
